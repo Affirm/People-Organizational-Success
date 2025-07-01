@@ -6,20 +6,20 @@
   <title>People Leader Learning Hub</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
+    /* Allow the page to expand fully inside Notion’s iframe */
     html, body {
-      height: auto;
-      min-height: 100%;
       margin: 0;
       padding: 0;
+      height: auto;
+      min-height: 100%;
       overflow: visible;
       box-sizing: border-box;
       font-family: 'Inter', sans-serif;
     }
+    /* Container whose content should flow without internal scroll bars */
     #container {
-      height: auto;
-      min-height: 100%;
-      overflow: visible;
       padding-bottom: 4rem;
+      overflow: visible;
       -webkit-overflow-scrolling: touch;
     }
     body {
@@ -34,9 +34,7 @@
       padding: 1rem 2rem;
       border-bottom: 1px solid #e0e0e0;
     }
-    header h1 {
-      font-size: 1.25rem;
-    }
+    header h1 { font-size: 1.25rem; }
     .hero {
       display: flex;
       flex-wrap: wrap;
@@ -44,25 +42,11 @@
       background: linear-gradient(90deg, #fff 50%, #4f46e5 50%);
       color: white;
     }
-    .hero-left {
-      flex: 1;
-      min-width: 300px;
-      padding: 1rem;
-    }
-    .hero-left img {
-      max-width: 100%;
-      border-radius: 8px;
-      display: block;
-    }
-    .hero-right {
-      flex: 1;
-      min-width: 300px;
-      padding: 2rem;
-    }
-    .hero-right h2 {
-      font-size: 1.75rem;
-      margin-bottom: 1rem;
-    }
+    .hero-left, .hero-right { flex: 1; min-width: 300px; }
+    .hero-left { padding: 1rem; }
+    .hero-left img { max-width: 100%; border-radius: 8px; display: block; }
+    .hero-right { padding: 2rem; }
+    .hero-right h2 { font-size: 1.75rem; margin-bottom: 1rem; }
     .button {
       background-color: #22c55e;
       color: white;
@@ -86,13 +70,8 @@
       text-decoration: none;
       font-weight: 500;
     }
-    section {
-      padding: 1rem 2rem;
-    }
-    h3 {
-      margin-bottom: 0.5rem;
-      color: #4b5563;
-    }
+    section { padding: 1rem 2rem; }
+    h3 { margin-bottom: 0.5rem; color: #4b5563; }
     .content-row {
       display: flex;
       flex-wrap: wrap;
@@ -105,20 +84,9 @@
       box-shadow: 0 2px 4px rgba(0,0,0,0.05);
       overflow: hidden;
     }
-    .card img {
-      width: 100%;
-      display: block;
-    }
-    .calendar {
-      width: 100%;
-      margin-top: 1rem;
-    }
-    footer {
-      text-align: left;
-      padding: 1rem 2rem;
-      font-size: 0.875rem;
-      color: #6b7280;
-    }
+    .card img { width: 100%; display: block; }
+    .calendar { width: 100%; margin-top: 1rem; }
+    footer { text-align: left; padding: 1rem 2rem; font-size: 0.875rem; color: #6b7280; }
   </style>
 </head>
 <body>
@@ -148,12 +116,8 @@
     <section>
       <h3>🎧 Leadership Podcasts</h3>
       <div class="content-row">
-        <div class="card">
-          <img src="images/podcast1.png" alt="Podcast 1">
-        </div>
-        <div class="card">
-          <img src="images/podcast2.png" alt="Podcast 2">
-        </div>
+        <div class="card"><img src="images/podcast1.png" alt="Podcast 1"></div>
+        <div class="card"><img src="images/podcast2.png" alt="Podcast 2"></div>
       </div>
     </section>
 
@@ -162,9 +126,11 @@
       <img class="calendar" src="images/calendar.png" alt="Calendar">
     </section>
 
-    <footer>
-      Affirm Legal +
-    </footer>
+    <!-- Sentinel to ensure Notion detects a tall initial height -->
+    <div style="height:1000px;"></div>
+    <!-- Remove or adjust sentinel height once embed handles correctly -->
+
+    <footer>Affirm Legal +</footer>
   </div>
 </body>
 </html>
