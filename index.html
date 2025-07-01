@@ -13,9 +13,11 @@
       overflow: hidden;
       box-sizing: border-box;
       font-family: 'Inter', sans-serif;
+      min-height: 100vh; /* Encourage Notion to allocate full height */
     }
     #container {
       height: 100vh;
+      min-height: 900px; /* Help Notion display enough vertical space */
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
     }
@@ -137,9 +139,9 @@
 
     <div class="nav-buttons">
       <a href="#">Manager Toolkit</a>
-      <a href="#">My Assignments</a>
-      <a href="#">Recommended</a>
-      <a href="#">In-Progress</a>
+      <a href="#">Curated Skill Paths</a>
+      <a href="#">Leadership Podcasts</a>
+      <a href="#">Recommended Reading</a>
     </div>
 
     <section>
@@ -155,7 +157,7 @@
     </section>
 
     <section>
-      <h3>📅 Upcoming Live Sessions</h3>
+      <h3>📅 Upcoming Events</h3>
       <img class="calendar" src="images/calendar.png" alt="Calendar">
     </section>
 
