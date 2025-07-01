@@ -7,18 +7,19 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
     html, body {
-      height: 100%;
+      height: auto;
+      min-height: 100%;
       margin: 0;
       padding: 0;
-      overflow: hidden;
+      overflow: visible;
       box-sizing: border-box;
       font-family: 'Inter', sans-serif;
-      min-height: 100vh; /* Encourage Notion to allocate full height */
     }
     #container {
-      height: 100vh;
-      min-height: 900px; /* Help Notion display enough vertical space */
-      overflow-y: auto;
+      height: auto;
+      min-height: 100%;
+      overflow: visible;
+      padding-bottom: 4rem;
       -webkit-overflow-scrolling: touch;
     }
     body {
@@ -139,9 +140,9 @@
 
     <div class="nav-buttons">
       <a href="#">Manager Toolkit</a>
-      <a href="#">Curated Skill Paths</a>
-      <a href="#">Leadership Podcasts</a>
-      <a href="#">Recommended Reading</a>
+      <a href="#">My Assignments</a>
+      <a href="#">Recommended</a>
+      <a href="#">In-Progress</a>
     </div>
 
     <section>
@@ -157,7 +158,7 @@
     </section>
 
     <section>
-      <h3>📅 Upcoming Events</h3>
+      <h3>📅 Upcoming Live Sessions</h3>
       <img class="calendar" src="images/calendar.png" alt="Calendar">
     </section>
 
