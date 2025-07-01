@@ -6,11 +6,18 @@
   <title>People Leader Learning Hub</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
-    * {
-      box-sizing: border-box;
-      font-family: 'Inter', sans-serif;
+    html, body {
+      height: 100%;
       margin: 0;
       padding: 0;
+      overflow: hidden;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+    #container {
+      height: 100vh;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
     }
     body {
       background-color: #f4f6f9;
@@ -112,48 +119,49 @@
   </style>
 </head>
 <body>
-  <header>
-    <h1>People Leader Learning Hub</h1>
-  </header>
+  <div id="container">
+    <header>
+      <h1>People Leader Learning Hub</h1>
+    </header>
 
-  <div class="hero">
-    <div class="hero-left">
-      <!-- Corrected path and filename -->
-      <img src="images/TV.png" alt="Hero Video Placeholder">
-    </div>
-    <div class="hero-right">
-      <h2>Welcome to the People Leader Learning Hub</h2>
-      <p>Discover and enhance your skills with our curated resources.</p>
-      <a href="#" class="button">Get Started</a>
-    </div>
-  </div>
-
-  <div class="nav-buttons">
-    <a href="#">Manager Toolkit</a>
-    <a href="#">My Assignments</a>
-    <a href="#">Recommended</a>
-    <a href="#">In-Progress</a>
-  </div>
-
-  <section>
-    <h3>🎧 Leadership Podcasts</h3>
-    <div class="content-row">
-      <div class="card">
-        <img src="images/podcast1.png" alt="Podcast 1">
+    <div class="hero">
+      <div class="hero-left">
+        <img src="images/TV.png" alt="Hero Video Placeholder">
       </div>
-      <div class="card">
-        <img src="images/podcast2.png" alt="Podcast 2">
+      <div class="hero-right">
+        <h2>Welcome to the People Leader Learning Hub</h2>
+        <p>Discover and enhance your skills with our curated resources.</p>
+        <a href="#" class="button">Get Started</a>
       </div>
     </div>
-  </section>
 
-  <section>
-    <h3>📅 Upcoming Live Sessions</h3>
-    <img class="calendar" src="images/calendar.png" alt="Calendar">
-  </section>
+    <div class="nav-buttons">
+      <a href="#">Manager Toolkit</a>
+      <a href="#">My Assignments</a>
+      <a href="#">Recommended</a>
+      <a href="#">In-Progress</a>
+    </div>
 
-  <footer>
-    Affirm Legal +
-  </footer>
+    <section>
+      <h3>🎧 Leadership Podcasts</h3>
+      <div class="content-row">
+        <div class="card">
+          <img src="images/podcast1.png" alt="Podcast 1">
+        </div>
+        <div class="card">
+          <img src="images/podcast2.png" alt="Podcast 2">
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h3>📅 Upcoming Live Sessions</h3>
+      <img class="calendar" src="images/calendar.png" alt="Calendar">
+    </section>
+
+    <footer>
+      Affirm Legal +
+    </footer>
+  </div>
 </body>
 </html>
