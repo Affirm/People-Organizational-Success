@@ -31,28 +31,40 @@
     }
     .hero-text h2 { margin: 0 0 0.5rem; font-size: 2rem; font-weight: 800; }
     .hero-text p { margin: 0; font-size: 1rem; font-weight: 400; }
+
     .nav-buttons { display: flex; justify-content: center; gap: 1rem; margin: 2rem 0; }
     .nav-buttons a {
       background: #6366f1; color: #fff; padding: 0.5rem 1rem;
       border-radius: 999px; text-decoration: none; font-weight: 500; cursor: pointer;
       transition: background 0.2s, color 0.2s, border 0.2s;
     }
-    /* Enhanced selected state styling */
     .nav-buttons a.selected {
       background: #fff; color: #6366f1; font-weight: 600;
-      border: 2px solid #6366f1;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      border: 2px solid #6366f1; box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
+
     section { padding: 1rem 2rem; }
     #content-area { display: flex; flex-wrap: wrap; gap: 1rem; }
     .card {
       flex: 1 1 250px; background: #fff; border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.05); overflow: hidden;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05); overflow: hidden; position: relative;
     }
     .card img { width: 100%; display: block; cursor: pointer; }
     #spotify-player { margin-top: 1rem; }
     .calendar-embed { width: 100%; height: 600px; border: none; overflow: hidden; }
     footer { text-align: left; padding: 1rem 2rem; font-size: 0.875rem; color: #6b7280; }
+
+    /* Overlay button groups */
+    .overlay-buttons {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      display: flex; flex-wrap: wrap; justify-content: center; align-items: center;
+      gap: 0.5rem; padding: 1rem;
+    }
+    .overlay-buttons button {
+      background: #6366f1; color: #fff; border: none; border-radius: 4px;
+      padding: 0.5rem 1rem; font-size: 0.875rem; cursor: pointer;
+      white-space: normal; text-align: center;
+    }
   </style>
 </head>
 <body>
@@ -70,22 +82,27 @@
       </div>
     </div>
     <div class="nav-buttons">
-      <a id="btn-manager-toolkit" class="selected">Manager Toolkit</a>
+      <a id="btn-manager-toolkit">Manager Toolkit</a>
       <a id="btn-skill-paths">Curated Skill Paths</a>
       <a id="btn-podcasts">Leadership Podcasts</a>
       <a id="btn-recommended">Recommended Reading</a>
     </div>
     <section>
-      <h3 id="section-title">🎧 Leadership Podcasts</h3>
+      <h3 id="section-title">📘 Recommended Reading</h3>
       <div id="content-area">
-        <div class="card">
-          <img src="images/podcast1.png" alt="Podcast 1" data-spotify="https://open.spotify.com/embed/episode/0QoIMrrMWDKcG3aPe1J3CD?utm_source=generator">
-        </div>
-        <div class="card">
-          <img src="images/podcast2.png" alt="Podcast 2" data-spotify="https://open.spotify.com/embed/episode/YOUR_EPISODE_ID2?utm_source=generator">
+        <!-- Recommended Reading overlay -->
+        <div class="card" style="flex: 0 0 calc(500px + 1rem);">
+          <img src="images/recommended-reading.png" alt="Recommended Reading">
+          <div class="overlay-buttons">
+            <button>The 7 Habits of Highly Effective People by Stephen R. Covey</button>
+            <button>Leaders Eat Last by Simon Sinek</button>
+            <button>Dare to Lead by Brené Brown</button>
+            <button>Good to Great by Jim Collins</button>
+            <button>The Leadership Challenge by James M. Kouzes & Barry Z. Posner</button>
+            <button>Multipliers: How the Best Leaders Make Everyone Smarter by Liz Wiseman</button>
+          </div>
         </div>
       </div>
-      <div id="spotify-player"></div>
     </section>
     <section>
       <h3>📅 Upcoming Events</h3>
@@ -101,21 +118,17 @@
         </div>
       `),
       'btn-podcasts': setupPodcasts,
-      'btn-skill-paths': () => updateContent('🧭 Curated Skill Paths', `
-        <div class="card" style="flex: 0 0 calc(500px + 1rem);">
-          <img src="images/skill-paths.png" alt="Curated Skill Paths">
-        </div>
-      `),
-      'btn-recommended': () => updateContent('📘 Recommended Reading', `
-        <div class="card" style="flex: 0 0 calc(500px + 1rem);">
-          <img src="images/recommended-reading.png" alt="Recommended Reading">
-        </div>
-      `)
+      'btn-skill-paths': () => updateContent('🧭 Curated Skill Paths', document.querySelector('.skill-paths-card').outerHTML),
+      'btn-recommended': () => {
+        document.getElementById('section-title').textContent = '📘 Recommended Reading';
+        const area = document.getElementById('content-area');
+        area.innerHTML = document.querySelector('section:nth-of-type(2) .card').outerHTML;
+      }
     };
     function updateContent(title, html) {
       document.getElementById('section-title').textContent = title;
       document.getElementById('content-area').innerHTML = html;
-      document.getElementById('spotify-player').innerHTML = '';
+      document.getElementById('spotify-player')?.innerHTML = '';
     }
     function setupPodcasts() {
       updateContent('🎧 Leadership Podcasts', `
@@ -138,7 +151,8 @@
         const fn = contents[btn.id]; if (fn) fn();
       });
     });
-    setupPodcasts();
+    // Initialize selection
+    document.getElementById('btn-recommended').click();
   </script>
 </body>
 </html>
