@@ -6,80 +6,37 @@
   <title>People Leader Learning Hub</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
-    html, body {
-      margin: 0; padding: 0; box-sizing: border-box;
-      font-family: 'Inter', sans-serif;
-      background: #f4f6f9; color: #333;
-      height: auto; overflow: visible;
-    }
-    #container {
-      height: 1600px; overflow: visible; padding-bottom: 1rem;
-    }
-    header {
-      display: flex; justify-content: space-between; align-items: center;
-      background: #fff; padding: 1rem 2rem; border-bottom: 1px solid #e0e0e0;
-    }
+    html, body { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; background: #f4f6f9; color: #333; }
+    #container { height: 1600px; overflow: visible; padding-bottom: 1rem; }
+    header { display: flex; justify-content: space-between; align-items: center; background: #fff; padding: 1rem 2rem; border-bottom: 1px solid #e0e0e0; }
     header h1 { font-size: 1.25rem; }
-    .hero { display: flex; flex-wrap: wrap; height: 500px; }
-    .hero-left, .hero-right { flex: 1; min-width: 300px; height: 100%; position: relative; }
+    .hero { display: flex; height: 500px; }
+    .hero-left, .hero-right { flex: 1; min-width: 300px; position: relative; }
     .hero-left iframe { width: 100%; height: 100%; border: none; }
     .hero-right { background: url('images/hero-right.png') center/cover no-repeat; }
-    .hero-text {
-      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-      text-align: center; color: #fff; width: 90%;
-      background: rgba(0, 0, 0, 0.6); padding: 1rem; border-radius: 8px;
-    }
+    .hero-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: #fff; background: rgba(0,0,0,0.6); padding: 1rem; border-radius: 8px; width: 90%; }
     .hero-text h2 { margin: 0 0 0.5rem; font-size: 2rem; font-weight: 800; }
     .hero-text p { margin: 0; font-size: 1rem; font-weight: 400; }
-
     .nav-buttons { display: flex; justify-content: center; gap: 1rem; margin: 2rem 0; }
-    .nav-buttons a {
-      background: #6366f1; color: #fff; padding: 0.5rem 1rem;
-      border-radius: 999px; text-decoration: none; font-weight: 500; cursor: pointer;
-      transition: background 0.2s, color 0.2s, border 0.2s;
-    }
-    .nav-buttons a.selected {
-      background: #fff; color: #6366f1; font-weight: 600;
-      border: 2px solid #6366f1; box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-
+    .nav-buttons a { background: #6366f1; color: #fff; padding: 0.5rem 1rem; border-radius: 999px; text-decoration: none; font-weight: 500; cursor: pointer; transition: background 0.2s, color 0.2s, border 0.2s; }
+    .nav-buttons a.selected { background: #fff; color: #6366f1; font-weight: 600; border: 2px solid #6366f1; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
     section { padding: 1rem 2rem; }
     #content-area { display: flex; flex-wrap: wrap; gap: 1rem; }
-    .card {
-      flex: 1 1 250px; background: #fff; border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.05); overflow: hidden; position: relative;
-    }
-    .card img { width: 100%; display: block; cursor: pointer; }
-    #spotify-player { margin-top: 1rem; }
+    .card { background: #fff; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); position: relative; overflow: hidden; }
+    .card img, .card iframe { width: 100%; display: block; }
+    #spotify-player { margin-top: 1rem; width: 100%; }
     .calendar-embed { width: 100%; height: 600px; border: none; overflow: hidden; }
     footer { text-align: left; padding: 1rem 2rem; font-size: 0.875rem; color: #6b7280; }
-
-    /* Overlay button groups */
-    .overlay-buttons {
-      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-      display: flex; flex-wrap: wrap; justify-content: center; align-items: center;
-      gap: 0.5rem; padding: 1rem;
-    }
-    .overlay-buttons button {
-      background: #6366f1; color: #fff; border: none; border-radius: 4px;
-      padding: 0.5rem 1rem; font-size: 0.875rem; cursor: pointer;
-      white-space: normal; text-align: center;
-    }
+    .overlay-buttons { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 0.5rem; padding: 1rem; }
+    .overlay-buttons button { background: #6366f1; color: #fff; border: none; border-radius: 4px; padding: 0.5rem 1rem; font-size: 0.875rem; cursor: pointer; text-align: center; }
   </style>
 </head>
 <body>
   <div id="container">
     <header><h1>People Leader Learning Hub</h1></header>
     <div class="hero">
-      <div class="hero-left">
-        <iframe src="https://www.youtube.com/embed/f_fCoXnQacU?si=JkH7YqqRnERXrbov" allowfullscreen></iframe>
-      </div>
-      <div class="hero-right">
-        <div class="hero-text">
-          <h2>Welcome to the People Leader Learning Hub</h2>
-          <p>Your one-stop location for learning and development</p>
-        </div>
-      </div>
+      <div class="hero-left"><iframe src="https://www.youtube.com/embed/f_fCoXnQacU?si=JkH7YqqRnERXrbov" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+      <div class="hero-right"><div class="hero-text"><h2>Welcome to the People Leader Learning Hub</h2><p>Your one-stop location for learning and development</p></div></div>
     </div>
     <div class="nav-buttons">
       <a id="btn-manager-toolkit">Manager Toolkit</a>
@@ -88,10 +45,37 @@
       <a id="btn-recommended">Recommended Reading</a>
     </div>
     <section>
-      <h3 id="section-title">📘 Recommended Reading</h3>
-      <div id="content-area">
-        <!-- Recommended Reading overlay -->
-        <div class="card" style="flex: 0 0 calc(500px + 1rem);">
+      <h3 id="section-title">🎧 Leadership Podcasts</h3>
+      <div id="content-area"></div>
+      <div id="spotify-player"></div>
+    </section>
+    <section>
+      <h3>📅 Upcoming Events</h3>
+      <iframe class="calendar-embed" src="https://calendar.google.com/calendar/embed?src=YOUR_CALENDAR_ID%40group.calendar.google.com&ctz=America%2FNew_York" scrolling="no"></iframe>
+    </section>
+    <footer>Affirm Legal +</footer>
+  </div>
+  <script>
+    const contents = {
+      'btn-manager-toolkit': () => updateContent('🧰 Manager Toolkit', `<div class="card" style="flex:0 0 calc(500px + 1rem);"><p style="padding:1rem;">Manager Toolkit content placeholder.</p></div>`),
+      'btn-podcasts': setupPodcasts,
+      'btn-skill-paths': () => updateContent('🧭 Curated Skill Paths', `
+        <div class="card" style="flex:0 0 calc(500px + 1rem);">
+          <img src="images/skill-paths.png" alt="Curated Skill Paths">
+          <div class="overlay-buttons">
+            <button>Foundations of Effective Leadership</button>
+            <button>Strategic Thinking & Decision Making</button>
+            <button>Emotional Intelligence for Leaders</button>
+            <button>Coaching & Developing Others</button>
+            <button>Leading Through Change</button>
+            <button>Inclusive Leadership & Team Culture</button>
+            <button>Executive Communication & Influence</button>
+            <button>Visionary Leadership & Innovation</button>
+          </div>
+        </div>
+      `),
+      'btn-recommended': () => updateContent('📘 Recommended Reading', `
+        <div class="card" style="flex:0 0 calc(500px + 1rem);">
           <img src="images/recommended-reading.png" alt="Recommended Reading">
           <div class="overlay-buttons">
             <button>The 7 Habits of Highly Effective People by Stephen R. Covey</button>
@@ -102,33 +86,12 @@
             <button>Multipliers: How the Best Leaders Make Everyone Smarter by Liz Wiseman</button>
           </div>
         </div>
-      </div>
-    </section>
-    <section>
-      <h3>📅 Upcoming Events</h3>
-      <iframe class="calendar-embed" src="https://calendar.google.com/calendar/embed?src=YOUR_CALENDAR_ID%40group.calendar.google.com&ctz=America%2FNew_York" scrolling="no"></iframe>
-    </section>
-    <footer>Affirm Legal +</footer>
-  </div>
-  <script>
-    const contents = {
-      'btn-manager-toolkit': () => updateContent('🧰 Manager Toolkit', `
-        <div class="card" style="flex: 0 0 calc(500px + 1rem);">
-          <p style="padding: 1rem;">Manager Toolkit content placeholder.</p>
-        </div>
-      `),
-      'btn-podcasts': setupPodcasts,
-      'btn-skill-paths': () => updateContent('🧭 Curated Skill Paths', document.querySelector('.skill-paths-card').outerHTML),
-      'btn-recommended': () => {
-        document.getElementById('section-title').textContent = '📘 Recommended Reading';
-        const area = document.getElementById('content-area');
-        area.innerHTML = document.querySelector('section:nth-of-type(2) .card').outerHTML;
-      }
+      `)
     };
     function updateContent(title, html) {
       document.getElementById('section-title').textContent = title;
       document.getElementById('content-area').innerHTML = html;
-      document.getElementById('spotify-player')?.innerHTML = '';
+      document.getElementById('spotify-player').innerHTML = '';
     }
     function setupPodcasts() {
       updateContent('🎧 Leadership Podcasts', `
@@ -148,11 +111,11 @@
       btn.addEventListener('click', () => {
         document.querySelectorAll('.nav-buttons a').forEach(b => b.classList.remove('selected'));
         btn.classList.add('selected');
-        const fn = contents[btn.id]; if (fn) fn();
+        contents[btn.id]();
       });
     });
-    // Initialize selection
-    document.getElementById('btn-recommended').click();
+    // Initialize default
+    document.getElementById('btn-podcasts').click();
   </script>
 </body>
 </html>
