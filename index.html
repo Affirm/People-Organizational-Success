@@ -15,17 +15,31 @@
     #container {
       height: 1600px; overflow: visible; padding-bottom: 1rem;
     }
-    header { display: flex; justify-content: space-between; align-items: center;
+    header {
+      display: flex; justify-content: space-between; align-items: center;
       background: #fff; padding: 1rem 2rem; border-bottom: 1px solid #e0e0e0;
     }
     header h1 { font-size: 1.25rem; }
     .hero { display: flex; flex-wrap: wrap; height: 500px; }
-    .hero-left, .hero-right { flex: 1; min-width: 300px; height: 100%; }
+    .hero-left, .hero-right { flex: 1; min-width: 300px; height: 100%; position: relative; }
     .hero-left iframe { width: 100%; height: 100%; border: none; }
-    .hero-right { background: url('images/hero-right.png') center/cover; }
+    .hero-right { background: url('images/hero-right.png') center/cover no-repeat; }
+    .hero-text {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      text-align: center; color: #fff; width: 90%;
+    }
+    .hero-text h2 { margin: 0 0 0.5rem; font-size: 2rem; font-weight: 800; }
+    .hero-text p { margin: 0; font-size: 1rem; font-weight: 400; }
     .nav-buttons { display: flex; justify-content: center; gap: 1rem; margin: 2rem 0; }
-    .nav-buttons a { background: #6366f1; color: #fff; padding: 0.5rem 1rem;
+    .nav-buttons a {
+      background: #6366f1; color: #fff; padding: 0.5rem 1rem;
       border-radius: 999px; text-decoration: none; font-weight: 500; cursor: pointer;
+      transition: background 0.2s, color 0.2s, border 0.2s;
+    }
+    /* Selected state styling */
+    .nav-buttons a.selected {
+      background: #fff; color: #6366f1; font-weight: 600;
+      border: 2px solid #6366f1;
     }
     section { padding: 1rem 2rem; }
     #content-area { display: flex; flex-wrap: wrap; gap: 1rem; }
@@ -45,10 +59,15 @@
       <div class="hero-left">
         <iframe src="https://www.youtube.com/embed/f_fCoXnQacU?si=JkH7YqqRnERXrbov" allowfullscreen></iframe>
       </div>
-      <div class="hero-right"></div>
+      <div class="hero-right">
+        <div class="hero-text">
+          <h2>Welcome to the People Leader Learning Hub</h2>
+          <p>Your one-stop location for learning and development</p>
+        </div>
+      </div>
     </div>
     <div class="nav-buttons">
-      <a id="btn-manager-toolkit">Manager Toolkit</a>
+      <a id="btn-manager-toolkit" class="selected">Manager Toolkit</a>
       <a id="btn-skill-paths">Curated Skill Paths</a>
       <a id="btn-podcasts">Leadership Podcasts</a>
       <a id="btn-recommended">Recommended Reading</a>
@@ -73,18 +92,28 @@
   </div>
   <script>
     const contents = {
+      'btn-manager-toolkit': () => updateContent('🧰 Manager Toolkit', `
+        <div class="card" style="flex: 0 0 calc(500px + 1rem);">
+          <!-- Manager Toolkit content goes here -->
+          <p style="padding: 1rem;">Manager Toolkit content placeholder.</p>
+        </div>
+      `),
       'btn-podcasts': setupPodcasts,
       'btn-skill-paths': () => updateContent('🧭 Curated Skill Paths', `
-        <div class="card"><img src="images/skill-paths.png" alt="Curated Skill Paths"></div>
+        <div class="card" style="flex: 0 0 calc(500px + 1rem);">
+          <img src="images/skill-paths.png" alt="Curated Skill Paths">
+        </div>
       `),
       'btn-recommended': () => updateContent('📘 Recommended Reading', `
-        <div class="card"><img src="images/recommended-reading.png" alt="Recommended Reading"></div>
+        <div class="card" style="flex: 0 0 calc(500px + 1rem);">
+          <img src="images/recommended-reading.png" alt="Recommended Reading">
+        </div>
       `)
     };
     function updateContent(title, html) {
       document.getElementById('section-title').textContent = title;
-      const area = document.getElementById('content-area');
-      area.innerHTML = html; document.getElementById('spotify-player').innerHTML = '';
+      document.getElementById('content-area').innerHTML = html;
+      document.getElementById('spotify-player').innerHTML = '';
     }
     function setupPodcasts() {
       updateContent('🎧 Leadership Podcasts', `
@@ -96,14 +125,19 @@
     function attachPodcastListeners() {
       document.querySelectorAll('#content-area img[data-spotify]').forEach(img => {
         img.addEventListener('click', () => {
-          const url = img.dataset.spotify;
-          document.getElementById('spotify-player').innerHTML = `<iframe src="${url}" width="100%" height="232" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+          document.getElementById('spotify-player').innerHTML = `<iframe src="${img.dataset.spotify}" width="100%" height="232" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
         });
       });
     }
-    document.querySelectorAll('.nav-buttons a').forEach(btn => btn.addEventListener('click', () => {
-      const fn = contents[btn.id]; if(fn) fn();
-    }));
+    document.querySelectorAll('.nav-buttons a').forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Toggle selected state
+        document.querySelectorAll('.nav-buttons a').forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+        // Invoke content
+        const fn = contents[btn.id]; if (fn) fn();
+      });
+    });
     setupPodcasts();
   </script>
 </body>
