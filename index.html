@@ -27,6 +27,7 @@
     .hero-text {
       position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
       text-align: center; color: #fff; width: 90%;
+      background: rgba(0, 0, 0, 0.6); padding: 1rem; border-radius: 8px;
     }
     .hero-text h2 { margin: 0 0 0.5rem; font-size: 2rem; font-weight: 800; }
     .hero-text p { margin: 0; font-size: 1rem; font-weight: 400; }
@@ -36,14 +37,16 @@
       border-radius: 999px; text-decoration: none; font-weight: 500; cursor: pointer;
       transition: background 0.2s, color 0.2s, border 0.2s;
     }
-    /* Selected state styling */
+    /* Enhanced selected state styling */
     .nav-buttons a.selected {
       background: #fff; color: #6366f1; font-weight: 600;
       border: 2px solid #6366f1;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
     section { padding: 1rem 2rem; }
     #content-area { display: flex; flex-wrap: wrap; gap: 1rem; }
-    .card { flex: 1 1 250px; background: #fff; border-radius: 8px;
+    .card {
+      flex: 1 1 250px; background: #fff; border-radius: 8px;
       box-shadow: 0 2px 4px rgba(0,0,0,0.05); overflow: hidden;
     }
     .card img { width: 100%; display: block; cursor: pointer; }
@@ -94,7 +97,6 @@
     const contents = {
       'btn-manager-toolkit': () => updateContent('🧰 Manager Toolkit', `
         <div class="card" style="flex: 0 0 calc(500px + 1rem);">
-          <!-- Manager Toolkit content goes here -->
           <p style="padding: 1rem;">Manager Toolkit content placeholder.</p>
         </div>
       `),
@@ -131,10 +133,8 @@
     }
     document.querySelectorAll('.nav-buttons a').forEach(btn => {
       btn.addEventListener('click', () => {
-        // Toggle selected state
         document.querySelectorAll('.nav-buttons a').forEach(b => b.classList.remove('selected'));
         btn.classList.add('selected');
-        // Invoke content
         const fn = contents[btn.id]; if (fn) fn();
       });
     });
