@@ -20,11 +20,11 @@
     section { padding:1rem 2rem; }
     #content-area { display:flex; flex-wrap:wrap; gap:1rem; }
     .card { background:#fff; border-radius:8px; box-shadow:0 2px 4px rgba(0,0,0,0.05); overflow:hidden; position:relative; }
-    .calendar-embed, #spotify-player iframe { width:100%; border:0; }
-    .calendar-embed { height:600px; }
+    .card img, .card iframe { width:100%; display:block; }
+    #spotify-player iframe { width:100%; border:0; }
+    .calendar-embed { width:100%; height:600px; border:0; }
     footer { padding:1rem 2rem; font-size:.875rem; color:#6b7280; }
-    /* Skill Paths layout */
-    .skill-layout { display:flex; flex:0 0 calc(500px + 1rem); width: calc(500px + 1rem); }
+    .skill-layout { display:flex; flex:0 0 calc(500px + 1rem); width:calc(500px + 1rem); }
     .skill-layout .img-container { flex:1; }
     .skill-layout .img-container img { width:100%; display:block; }
     .skill-layout .btn-container { flex:1; display:flex; flex-direction:column; gap:.5rem; padding:1rem; overflow-y:auto; }
@@ -35,55 +35,115 @@
   <div id="container">
     <header><h1>People Leader Learning Hub</h1></header>
     <div class="hero">
-      <div class="hero-left"><iframe src="https://www.youtube.com/embed/f_fCoXnQacU?si=JkH7YqqRnERXrbov" allowfullscreen></iframe></div>
-      <div class="hero-right"><div class="hero-text"><h2>Welcome to the People Leader Learning Hub</h2><p>Your one-stop location for learning and development</p></div></div>
+      <div class="hero-left">
+        <iframe src="https://www.youtube.com/embed/f_fCoXnQacU?si=JkH7YqqRnERXrbov" allowfullscreen></iframe>
+      </div>
+      <div class="hero-right">
+        <div class="hero-text">
+          <h2>Welcome to the People Leader Learning Hub</h2>
+          <p>Your one-stop location for learning and development</p>
+        </div>
+      </div>
     </div>
+
     <div class="nav-buttons">
       <a id="btn-manager-toolkit">Manager Toolkit</a>
       <a id="btn-skill-paths">Curated Skill Paths</a>
       <a id="btn-podcasts">Leadership Podcasts</a>
       <a id="btn-recommended">Recommended Reading</a>
     </div>
+
     <section>
       <h3 id="section-title">🧰 Manager Toolkit</h3>
       <div id="content-area">
         <div class="card skill-layout">
           <div class="img-container"><img src="images/skill-paths.png" alt="Curated Skill Paths"></div>
           <div class="btn-container">
-            <button>Foundations of Effective Leadership</button>
-            <button>Strategic Thinking & Decision Making</button>
-            <button>Emotional Intelligence for Leaders</button>
-            <button>Coaching & Developing Others</button>
-            <button>Leading Through Change</button>
-            <button>Inclusive Leadership & Team Culture</button>
-            <button>Executive Communication & Influence</button>
-            <button>Visionary Leadership & Innovation</button>
+            <p style="padding:1rem;">Manager Toolkit content placeholder.</p>
           </div>
         </div>
       </div>
       <div id="spotify-player"></div>
     </section>
+
     <section>
       <h3>📅 Upcoming Events</h3>
       <iframe class="calendar-embed" src="https://calendar.google.com/calendar/embed?src=YOUR_CALENDAR_ID%40group.calendar.google.com&ctz=America%2FNew_York" scrolling="no"></iframe>
     </section>
+
     <footer>Affirm Legal +</footer>
   </div>
+
   <script>
+    const buttons = document.querySelectorAll('.nav-buttons a');
+    function clearSelected() { buttons.forEach(b => b.classList.remove('selected')); }
     const contents = {
-      'btn-manager-toolkit': () => renderManager(),
-      'btn-skill-paths': () => renderSkills(),
-      'btn-podcasts': () => renderPodcasts(),
-      'btn-recommended': () => renderRecommended()
+      'btn-manager-toolkit': () => {
+        clearSelected(); document.getElementById('btn-manager-toolkit').classList.add('selected');
+        document.getElementById('section-title').textContent = '🧰 Manager Toolkit';
+        document.getElementById('content-area').innerHTML = '<div class="card skill-layout"><div class="img-container"><img src="images/skill-paths.png"></div><div class="btn-container"><p style="padding:1rem;">Manager Toolkit content placeholder.</p></div></div>';
+        document.getElementById('spotify-player').innerHTML = '';
+      },
+      'btn-skill-paths': () => {
+        clearSelected(); document.getElementById('btn-skill-paths').classList.add('selected');
+        document.getElementById('section-title').textContent = '🧭 Curated Skill Paths';
+        document.getElementById('content-area').innerHTML = `
+          <div class="card skill-layout">
+            <div class="img-container"><img src="images/skill-paths.png" alt="Curated Skill Paths"></div>
+            <div class="btn-container">
+              <button>Foundations of Effective Leadership</button>
+              <button>Strategic Thinking & Decision Making</button>
+              <button>Emotional Intelligence for Leaders</button>
+              <button>Coaching & Developing Others</button>
+              <button>Leading Through Change</button>
+              <button>Inclusive Leadership & Team Culture</button>
+              <button>Executive Communication & Influence</button>
+              <button>Visionary Leadership & Innovation</button>
+            </div>
+          </div>
+        `;
+        document.getElementById('spotify-player').innerHTML = '';
+      },
+      'btn-podcasts': () => {
+        clearSelected(); document.getElementById('btn-podcasts').classList.add('selected');
+        document.getElementById('section-title').textContent = '🎧 Leadership Podcasts';
+        document.getElementById('content-area').innerHTML = `
+          <div class="card"><img src="images/podcast1.png" data-spotify="https://open.spotify.com/embed/episode/0QoIMrrMWDKcG3aPe1J3CD?utm_source=generator"></div>
+          <div class="card"><img src="images/podcast2.png" data-spotify="https://open.spotify.com/embed/episode/YOUR_EPISODE_ID2?utm_source=generator"></div>
+        `;
+        attachSpotifyListeners();
+      },
+      'btn-recommended': () => {
+        clearSelected(); document.getElementById('btn-recommended').classList.add('selected');
+        document.getElementById('section-title').textContent = '📘 Recommended Reading';
+        document.getElementById('content-area').innerHTML = `
+          <div class="card skill-layout">
+            <div class="img-container"><img src="images/recommended-reading.png" alt="Recommended Reading"></div>
+            <div class="btn-container">
+              <button>The 7 Habits of Highly Effective People by Stephen R. Covey</button>
+              <button>Leaders Eat Last by Simon Sinek</button>
+              <button>Dare to Lead by Brené Brown</button>
+              <button>Good to Great by Jim Collins</button>
+              <button>The Leadership Challenge by James M. Kouzes & Barry Z. Posner</button>
+              <button>Multipliers: How the Best Leaders Make Everyone Smarter by Liz Wiseman</button>
+            </div>
+          </div>
+        `;
+        document.getElementById('spotify-player').innerHTML = '';
+      }
     };
-    function clearSelection(btn){document.querySelectorAll('.nav-buttons a').forEach(b=>b.classList.remove('selected'));btn.classList.add('selected');}
-    function renderManager(){clearSelection(document.getElementById('btn-manager-toolkit'));document.getElementById('section-title').textContent='🧰 Manager Toolkit';document.getElementById('content-area').innerHTML='<div class="card skill-layout"><div class="img-container"><img src="images/skill-paths.png"></div><div class="btn-container"><p style="padding:1rem;">Manager Toolkit content placeholder.</p></div></div>';document.getElementById('spotify-player').innerHTML='';}
-    function renderSkills(){clearSelection(document.getElementById('btn-skill-paths'));document.getElementById('section-title').textContent='🧭 Curated Skill Paths';document.getElementById('content-area').innerHTML=document.querySelector('.card.skill-layout').outerHTML;document.getElementById('spotify-player').innerHTML='';}
-    function renderPodcasts(){clearSelection(document.getElementById('btn-podcasts'));document.getElementById('section-title').textContent='🎧 Leadership Podcasts';document.getElementById('content-area').innerHTML='<div class="card"><img src="images/podcast1.png" data-spotify="https://open.spotify.com/embed/episode/0QoIMrrMWDKcG3aPe1J3CD?utm_source=generator"></div><div class="card"><img src="images/podcast2.png" data-spotify="https://open.spotify.com/embed/episode/YOUR_EPISODE_ID2?utm_source=generator"></div>';attachListeners();document.getElementById('spotify-player').innerHTML='';}
-    function renderRecommended(){clearSelection(document.getElementById('btn-recommended'));document.getElementById('section-title').textContent='📘 Recommended Reading';document.getElementById('content-area').innerHTML='<div class="card skill-layout"><div class="img-container"><img src="images/recommended-reading.png"></div><div class="btn-container"><button>The 7 Habits of Highly Effective People by Stephen R. Covey</button><button>Leaders Eat Last by Simon Sinek</button><button>Dare to Lead by Brené Brown</button><button>Good to Great by Jim Collins</button><button>The Leadership Challenge by James M. Kouzes & Barry Z. Posner</button><button>Multipliers: How the Best Leaders Make Everyone Smarter by Liz Wiseman</button></div></div>';document.getElementById('spotify-player').innerHTML='';}
-    function attachListeners(){document.querySelectorAll('#content-area img[data-spotify]').forEach(img=>img.addEventListener('click',()=>{document.getElementById('spotify-player').innerHTML=`<iframe src="${img.dataset.spotify}" width="100%" height="232" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;}));}
-    // Initialize default
-    renderManager();
+
+    function attachSpotifyListeners() {
+      document.querySelectorAll('#content-area img[data-spotify]').forEach(img => {
+        img.addEventListener('click', () => {
+          document.getElementById('spotify-player').innerHTML = `<iframe src="${img.dataset.spotify}" width="100%" height="232" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+        });
+      });
+    }
+
+    buttons.forEach(btn => btn.addEventListener('click', () => contents[btn.id]()));
+    // Initialize default to Curated Skill Paths
+    contents['btn-skill-paths']();
   </script>
 </body>
 </html>
