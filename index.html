@@ -39,14 +39,16 @@
       <div class="hero-right"><div class="hero-text"><h2>Welcome to the People Leader Learning Hub</h2><p>Your one-stop location for learning and development</p></div></div>
     </div>
     <div class="nav-buttons">
-      <a id="btn-manager-toolkit">Manager Toolkit</a>
+      <a id="btn-manager-toolkit" class="selected">Manager Toolkit</a>
       <a id="btn-skill-paths">Curated Skill Paths</a>
       <a id="btn-podcasts">Leadership Podcasts</a>
       <a id="btn-recommended">Recommended Reading</a>
     </div>
     <section>
-      <h3 id="section-title">🎧 Leadership Podcasts</h3>
-      <div id="content-area"></div>
+      <h3 id="section-title">🧰 Manager Toolkit</h3>
+      <div id="content-area">
+        <div class="card" style="flex:0 0 calc(500px + 1rem);"><p style="padding:1rem;">Manager Toolkit content placeholder.</p></div>
+      </div>
       <div id="spotify-player"></div>
     </section>
     <section>
@@ -114,8 +116,8 @@
         contents[btn.id]();
       });
     });
-    // Initialize default
-    document.getElementById('btn-podcasts').click();
+        // Initialize default to Recommended Reading
+    document.getElementById('btn-recommended').click();
   </script>
 </body>
 </html>
