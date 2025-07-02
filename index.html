@@ -42,9 +42,11 @@
       padding: 0;
       height: 500px;
     }
-    .hero-left, .hero-right {
+    .hero-left,
+    .hero-right {
       flex: 1;
       min-width: 300px;
+      height: 100%; /* ensure both sides equal height */
     }
 
     .hero-left iframe {
@@ -54,17 +56,12 @@
       display: block;
     }
 
+    /* Right hero background only, no overlay */
     .hero-right {
-      position: relative;
       background-image: url('images/hero-right.png');
       background-size: cover;
       background-position: center;
-    }
-    .hero-right::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(79,70,229,0.6);
+      height: 100%; /* match left height */
     }
 
     .nav-buttons {
@@ -86,7 +83,6 @@
     section { padding: 1rem 2rem; }
     #content-area.content-row { display: flex; flex-wrap: wrap; gap: 1rem; }
     #content-area img.full-width-image { width: 100%; display: block; border-radius: 8px; }
-    /* Small variant for skill-paths image: 60% smaller width (40% of container) */
     #content-area img.full-width-image.small { width: 40%; margin: 0 auto; }
     #spotify-player { margin-top: 1rem; }
 
@@ -162,7 +158,6 @@
       'btn-podcasts': setupPodcasts,
       'btn-skill-paths': () => updateContent('🧭 Curated Skill Paths', `<img class="full-width-image small" src="images/skill-paths.png" alt="Curated Skill Paths">`),
       'btn-recommended': () => updateContent('📘 Recommended Reading', `<img class="full-width-image" src="images/recommended-reading.png" alt="Recommended Reading">`)
-      // You can add a manager toolkit handler later if needed
     };
 
     // Generic content update
