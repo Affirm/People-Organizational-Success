@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>To the People Leader Learning Hub</title>
+  <title>To The People Leader Learning Hub</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
     /* Base Reset & Typography */
@@ -29,19 +29,36 @@
     /* Content Section */
     section { padding: 1rem 2rem; }
     #content-area { display: flex; gap: 1rem; flex-wrap: wrap; }
-    .card { background: #fff; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); overflow: hidden; }
+    .card { background: #fff; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); overflow: hidden; position: relative; }
     .card img, .card iframe { width: 100%; display: block; }
     #spotify-player iframe { width: 100%; border: 0; }
 
     /* Calendar Embed */
     .calendar-embed { width: 100%; height: 600px; border: none; }
 
-    /* Skill Paths Layout */
+    /* Skill Paths Layout Updated: Two Column Buttons */
     .skill-layout { display: flex; width: 100%; max-width: 1000px; }
     .skill-layout .img-container { flex: 1; }
     .skill-layout .img-container img { width: 100%; height: auto; display: block; }
-    .skill-layout .btn-container { flex: 1; display: flex; flex-direction: column; gap: 0.5rem; padding: 1rem; overflow-y: auto; }
-    .skill-layout .btn-container button { background: #6366f1; color: #fff; border: none; border-radius: 4px; padding: 0.75rem 1rem; font-size: 0.875rem; text-align: left; cursor: pointer; }
+    .skill-layout .btn-container {
+      flex: 1;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+      padding: 1rem;
+      max-height: 100%;
+      overflow-y: auto;
+    }
+    .skill-layout .btn-container button {
+      background: #6366f1;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      padding: 0.75rem 1rem;
+      font-size: 0.875rem;
+      text-align: left;
+      cursor: pointer;
+    }
 
     footer { padding: 1rem 2rem; font-size: 0.875rem; color: #6b7280; }
   </style>
@@ -51,15 +68,8 @@
     <header><h1>People Leader Learning Hub</h1></header>
 
     <div class="hero">
-      <div class="hero-left">
-        <iframe src="https://www.youtube.com/embed/f_fCoXnQacU?si=JkH7YqqRnERXrbov" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-      </div>
-      <div class="hero-right">
-        <div class="hero-text">
-          <h2>Welcome to the People Leader Learning Hub</h2>
-          <p>Your one-stop location for learning and development</p>
-        </div>
-      </div>
+      <div class="hero-left"><iframe src="https://www.youtube.com/embed/f_fCoXnQacU?si=JkH7YqqRnERXrbov" allowfullscreen></iframe></div>
+      <div class="hero-right"><div class="hero-text"><h2>Welcome to the People Leader Learning Hub</h2><p>Your one-stop location for learning and development</p></div></div>
     </div>
 
     <div class="nav-buttons">
@@ -72,7 +82,6 @@
     <section>
       <h3 id="section-title">🧰 Manager Toolkit</h3>
       <div id="content-area">
-        <!-- default Manager Toolkit placeholder -->
         <div class="card" style="padding: 1rem;">Manager Toolkit content placeholder.</div>
       </div>
       <div id="spotify-player"></div>
@@ -125,7 +134,10 @@
         <div class="card"><img src="images/podcast1.png" data-spotify="https://open.spotify.com/embed/episode/0QoIMrrMWDKcG3aPe1J3CD?utm_source=generator"></div>
         <div class="card"><img src="images/podcast2.png" data-spotify="https://open.spotify.com/embed/episode/YOUR_EPISODE_ID2?utm_source=generator"></div>
       `;
-      attachSpotifyListeners();
+      document.getElementById('spotify-player').innerHTML = '';
+      document.querySelectorAll('#content-area img[data-spotify]').forEach(img => img.addEventListener('click', () => {
+        document.getElementById('spotify-player').innerHTML = `<iframe src="${img.dataset.spotify}" width="100%" height="232" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+      }));
     }
 
     function renderRecommended() {
@@ -147,14 +159,6 @@
       document.getElementById('spotify-player').innerHTML = '';
     }
 
-    function attachSpotifyListeners() {
-      document.querySelectorAll('#content-area img[data-spotify]').forEach(img => {
-        img.addEventListener('click', () => {
-          document.getElementById('spotify-player').innerHTML = `<iframe src="${img.dataset.spotify}" width="100%" height="232" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
-        });
-      });
-    }
-
     // Bind tabs
     tabs.forEach(tab => tab.addEventListener('click', () => {
       const fn = {
@@ -166,7 +170,7 @@
       fn();
     }));
 
-    // Initialize default
+    // Initialize default to Skill Paths
     renderSkillPaths();
   </script>
 </body>
