@@ -20,9 +20,9 @@
 
     /* Fixed-height container for Notion embed */
     #container {
-      height: 5000px;           /* Adjust this pixel value to fit your content height */
-      overflow: visible;        /* No internal scrollbars */
-      padding-bottom: 1rem;     /* Extra breathing room */
+      height: 1600px;
+      overflow: visible;
+      padding-bottom: 1rem;
       -webkit-overflow-scrolling: touch;
     }
 
@@ -34,25 +34,50 @@
       padding: 1rem 2rem;
       border-bottom: 1px solid #e0e0e0;
     }
-    header h1 {
-      font-size: 1.25rem;
-    }
+    header h1 { font-size: 1.25rem; }
 
     .hero {
       display: flex;
       flex-wrap: wrap;
-      padding: 2rem;
-      background: linear-gradient(90deg, #fff 50%, #4f46e5 50%);
-      color: white;
+      padding: 0;
+      height: 500px;
     }
     .hero-left, .hero-right {
       flex: 1;
       min-width: 300px;
     }
-    .hero-left { padding: 1rem; }
-    .hero-left img { max-width: 100%; border-radius: 8px; display: block; }
-    .hero-right { padding: 2rem; }
-    .hero-right h2 { font-size: 1.75rem; margin-bottom: 1rem; }
+
+    .hero-left iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    .hero-right {
+      position: relative;
+      padding: 2rem;
+      background-image: url('images/hero-right.png');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      color: white;
+    }
+    .hero-right::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(79,70,229,0.6);
+    }
+    .hero-right h2, .hero-right p, .hero-right .button {
+      position: relative;
+      z-index: 1;
+    }
+    .hero-right h2 { font-size: 2rem; margin-bottom: 0.5rem; }
+    .hero-right p { margin-bottom: 1.5rem; }
+
     .button {
       background-color: #22c55e;
       color: white;
@@ -76,11 +101,14 @@
       border-radius: 999px;
       text-decoration: none;
       font-weight: 500;
+      cursor: pointer;
     }
 
     section { padding: 1rem 2rem; }
-    h3 { margin-bottom: 0.5rem; color: #4b5563; }
-    .content-row { display: flex; flex-wrap: wrap; gap: 1rem; }
+    #content-area.content-row { display: flex; flex-wrap: wrap; gap: 1rem; }
+    #content-area img.full-width-image { width: 100%; display: block; border-radius: 8px; }
+    #spotify-player { margin-top: 1rem; }
+
     .card {
       flex: 1 1 250px;
       background-color: white;
@@ -88,9 +116,15 @@
       box-shadow: 0 2px 4px rgba(0,0,0,0.05);
       overflow: hidden;
     }
-    .card img { width: 100%; display: block; }
+    .card img { width: 100%; display: block; cursor: pointer; }
 
-    .calendar { width: 100%; margin-top: 1rem; }
+    /* Styles for Google Calendar embed */
+    .calendar-embed {
+      width: 100%;
+      height: 600px; /* adjust height as needed */
+      border: none;
+      overflow: hidden;
+    }
 
     footer {
       text-align: left;
@@ -108,36 +142,93 @@
 
     <div class="hero">
       <div class="hero-left">
-        <img src="images/TV.png" alt="Hero Video Placeholder">
+        <iframe src="https://www.youtube.com/embed/f_fCoXnQacU?si=JkH7YqqRnERXrbov" title="YouTube video player" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
       </div>
       <div class="hero-right">
         <h2>Welcome to the People Leader Learning Hub</h2>
-        <p>Discover and enhance your skills with our curated resources.</p>
+        <p>You one-stop location for learning and development</p>
         <a href="#" class="button">Get Started</a>
       </div>
     </div>
 
     <div class="nav-buttons">
-      <a href="#">Manager Toolkit</a>
-      <a href="#">My Assignments</a>
-      <a href="#">Recommended</a>
-      <a href="#">In-Progress</a>
+      <a id="btn-skill-paths">Curated Skill Paths</a>
+      <a id="btn-podcasts">Leadership Podcasts</a>
+      <a id="btn-recommended">Recommended Reading</a>
     </div>
 
     <section>
-      <h3>🎧 Leadership Podcasts</h3>
-      <div class="content-row">
-        <div class="card"><img src="images/podcast1.png" alt="Podcast 1"></div>
-        <div class="card"><img src="images/podcast2.png" alt="Podcast 2"></div>
+      <h3 id="section-title">🎧 Leadership Podcasts</h3>
+      <div id="content-area" class="content-row">
+        <div class="card">
+          <img src="images/podcast1.png" alt="Podcast 1" data-spotify="https://open.spotify.com/embed/episode/0QoIMrrMWDKcG3aPe1J3CD?utm_source=generator">
+        </div>
+        <div class="card">
+          <img src="images/podcast2.png" alt="Podcast 2" data-spotify="https://open.spotify.com/embed/episode/YOUR_EPISODE_ID2?utm_source=generator">
+        </div>
       </div>
+      <div id="spotify-player"></div>
     </section>
 
     <section>
-      <h3>📅 Upcoming Live Sessions</h3>
-      <img class="calendar" src="images/calendar.png" alt="Calendar">
+      <h3>📅 Upcoming Events</h3>
+      <iframe class="calendar-embed" src="https://calendar.google.com/calendar/u/0/r/month" frameborder="0" scrolling="no"></iframe>
     </section>
 
     <footer>Affirm Legal +</footer>
   </div>
+
+  <script>
+    // Tab content definitions
+    const contents = {
+      'btn-podcasts': setupPodcasts,
+      'btn-skill-paths': () => updateContent('🧭 Curated Skill Paths', `<img class="full-width-image" src="images/skill-paths.png" alt="Curated Skill Paths">`),
+      'btn-recommended': () => updateContent('📘 Recommended Reading', `<img class="full-width-image" src="images/recommended-reading.png" alt="Recommended Reading">`)
+    };
+
+    // Generic content update
+    function updateContent(title, html) {
+      document.getElementById('section-title').textContent = title;
+      const area = document.getElementById('content-area');
+      area.className = html.includes('card') ? 'content-row' : '';
+      area.innerHTML = html;
+      document.getElementById('spotify-player').innerHTML = '';
+    }
+
+    // Setup podcasts view with clickable Spotify episodes
+    function setupPodcasts() {
+      updateContent('🎧 Leadership Podcasts', `
+        <div class="card">
+          <img src="images/podcast1.png" alt="Podcast 1" data-spotify="https://open.spotify.com/embed/episode/0QoIMrrMWDKcG3aPe1J3CD?utm_source=generator">
+        </div>
+        <div class="card">
+          <img src="images/podcast2.png" alt="Podcast 2" data-spotify="https://open.spotify.com/embed/episode/YOUR_EPISODE_ID2?utm_source=generator">
+        </div>
+      `);
+      attachPodcastListeners();
+    }
+
+    // Attach click handlers to podcast images
+    function attachPodcastListeners() {
+      document.querySelectorAll('#content-area img[data-spotify]').forEach(img => {
+        img.addEventListener('click', () => {
+          const url = img.getAttribute('data-spotify');
+          document.getElementById('spotify-player').innerHTML = `
+            <iframe src="${url}" width="100%" height="232" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          `;
+        });
+      });
+    }
+
+    // Initialize default view and listeners
+    document.querySelectorAll('.nav-buttons a').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const fn = contents[btn.id];
+        if (fn) fn();
+      });
+    });
+    // Load podcasts view by default
+    setupPodcasts();
+  </script>
 </body>
 </html>
