@@ -3,41 +3,133 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>To The People Leader Hub</title>
+  <title>People Leader Hub</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
-    /* Base Reset & Typography */
-    html, body { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; background: #f4f6f9; }
-    #container { padding-bottom: 1rem; }
-    header { background: #fff; padding: 1rem 2rem; border-bottom: 1px solid #e0e0e0; }
-    header h1 { margin: 0; font-weight: 600; }
+    /* Base reset & typography */
+    html, body {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+      background: #f4f6f9;
+    }
+    #container {
+      padding-bottom: 1rem;
+    }
+    header {
+      background: #fff;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    header h1 {
+      margin: 0;
+      font-weight: 600;
+      font-size: 1.25rem;
+    }
 
     /* Hero Section */
-    .hero { display: flex; height: 500px; }
-    .hero-left, .hero-right { flex: 1; min-width: 300px; position: relative; }
-    .hero-left iframe { width: 100%; height: 100%; border: none; }
-    .hero-right { background: url('images/hero-right.png') center/cover no-repeat; }
-    .hero-text { position: absolute; top:50%; left:50%; transform: translate(-50%, -50%); background: rgba(0,0,0,0.6); color: #fff; padding:1rem; border-radius:8px; text-align: center; width: 80%; }
+    .hero {
+      display: flex;
+      height: 500px;
+    }
+    .hero-left, .hero-right {
+      flex: 1;
+      min-width: 300px;
+      position: relative;
+    }
+    /* Affirm-colored square behind video */
+    .hero-left {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #4f46e5; /* Affirm purple */
+    }
+    .video-wrapper {
+      width: 70%;
+      aspect-ratio: 1 / 1;
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      background: #000;
+    }
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    .hero-right {
+      background: url('images/hero-right.png') center/cover no-repeat;
+    }
+    .hero-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(0,0,0,0.6);
+      color: #fff;
+      padding: 1rem;
+      border-radius: 8px;
+      text-align: center;
+      width: 80%;
+    }
     .hero-text h2 { margin: 0 0 0.5rem; font-size: 2rem; font-weight: 800; }
     .hero-text p { margin: 0; font-size: 1rem; }
 
     /* Navigation Buttons */
-    .nav-buttons { display: flex; justify-content: center; gap: 1rem; margin: 2rem 0; }
-    .nav-buttons a { background: #6366f1; color: #fff; padding: 0.5rem 1rem; border-radius: 999px; text-decoration: none; font-weight: 500; cursor: pointer; transition: all 0.2s; }
-    .nav-buttons a.selected { background: #fff; color: #6366f1; border: 2px solid #6366f1; font-weight: 600; }
+    .nav-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+    .nav-buttons a {
+      background: #6366f1;
+      color: #fff;
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .nav-buttons a.selected {
+      background: #fff;
+      color: #6366f1;
+      border: 2px solid #6366f1;
+      font-weight: 600;
+    }
 
     /* Content Section */
     section { padding: 1rem 2rem; }
-    #content-area { display: flex; gap: 1rem; flex-wrap: wrap; }
-    .card { background: #fff; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); overflow: hidden; position: relative; }
+    #content-area {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .card {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      overflow: hidden;
+      position: relative;
+    }
     .card img, .card iframe { width: 100%; display: block; }
     #spotify-player iframe { width: 100%; border: 0; }
 
     /* Calendar Embed */
     .calendar-embed { width: 100%; height: 600px; border: none; }
 
-    /* Skill Paths Layout Updated: Two Column Buttons */
-    .skill-layout { display: flex; width: 100%; max-width: 1000px; }
+    /* Skill Paths Layout: Two columns */
+    .skill-layout {
+      display: flex;
+      width: 100%;
+      max-width: 1000px;
+    }
     .skill-layout .img-container { flex: 1; }
     .skill-layout .img-container img { width: 100%; height: auto; display: block; }
     .skill-layout .btn-container {
@@ -68,8 +160,17 @@
     <header><h1>People Leader Hub</h1></header>
 
     <div class="hero">
-      <div class="hero-left"><iframe src="https://player.vimeo.com/video/1090980266?h=d37eeabc8a&amp;title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Welcome to Affirm"></iframe></div>
-      <div class="hero-right"><div class="hero-text"><h2>Welcome to the People Leader Hub</h2><p>Your one-stop location for leaders @Affirm</p></div></div>
+      <div class="hero-left">
+        <div class="video-wrapper">
+          <iframe src="https://player.vimeo.com/video/1090980266?h=d37eeabc8a&title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479" title="Welcome to Affirm" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"></iframe>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="hero-text">
+          <h2>Welcome to the People Leader Hub</h2>
+          <p>Your one-stop location for leaders @Affirm</p>
+        </div>
+      </div>
     </div>
 
     <div class="nav-buttons">
@@ -80,9 +181,21 @@
     </div>
 
     <section>
-      <h3 id="section-title">🧰 Leader Toolkit</h3>
+      <h3 id="section-title">🧭 Curated Skill Paths</h3>
       <div id="content-area">
-        <div class="card" style="padding: 1rem;">Leader Toolkit content placeholder.</div>
+        <div class="card skill-layout">
+          <div class="img-container"><img src="images/skill-paths.png" alt="Curated Skill Paths"></div>
+          <div class="btn-container">
+            <button>Foundations of Effective Leadership</button>
+            <button>Strategic Thinking & Decision Making</button>
+            <button>Emotional Intelligence for Leaders</button>
+            <button>Coaching & Developing Others</button>
+            <button>Leading Through Change</button>
+            <button>Inclusive Leadership & Team Culture</button>
+            <button>Executive Communication & Influence</button>
+            <button>Visionary Leadership & Innovation</button>
+          </div>
+        </div>
       </div>
       <div id="spotify-player"></div>
     </section>
@@ -101,8 +214,8 @@
 
     function renderManager() {
       clearSelection(); document.getElementById('btn-manager-toolkit').classList.add('selected');
-      document.getElementById('section-title').textContent = '🧰 Manager Toolkit';
-      document.getElementById('content-area').innerHTML = '<div class="card" style="padding:1rem;">Manager Toolkit content placeholder.</div>';
+      document.getElementById('section-title').textContent = '🧰 Leader Toolkit';
+      document.getElementById('content-area').innerHTML = '<div class="card" style="padding:1rem;">Leader Toolkit content placeholder.</div>';
       document.getElementById('spotify-player').innerHTML = '';
     }
 
@@ -161,13 +274,13 @@
 
     // Bind tabs
     tabs.forEach(tab => tab.addEventListener('click', () => {
-      const fn = {
+      const fnMap = {
         'btn-manager-toolkit': renderManager,
         'btn-skill-paths': renderSkillPaths,
         'btn-podcasts': renderPodcasts,
         'btn-recommended': renderRecommended
-      }[tab.id];
-      fn();
+      };
+      fnMap[tab.id]();
     }));
 
     // Initialize default to Skill Paths
