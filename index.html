@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- v4 -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>People Leader Hub</title>
@@ -39,30 +38,27 @@
       min-width: 300px;
       position: relative;
     }
-    /* Affirm-colored square behind video */
+    /* Affirm-colored background and wrapper */
     .hero-left {
       display: flex;
       justify-content: center;
       align-items: center;
-      background-color: #4f46e5; /* Affirm purple */
+      background-color: #4f46e5;
     }
     .video-wrapper {
-      width: 60%;               /* adjust to desired size */
-      /* maintain square container */
-      aspect-ratio: 1 / 1;
-      position: relative;
+      width: 80%;
+      max-width: 800px;
+      background-color: #4f46e5;
+      padding: 1rem;
       border-radius: 12px;
-      overflow: hidden;
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      background-color: #4f46e5; /* Affirm purple background */
-      padding: 1rem;            /* show purple border around video */
     }
     .video-wrapper iframe {
       width: 100%;
-      max-width: 85%;
-      aspect-ratio: 16 / 9;
+      aspect-ratio: 16/9;
       border: none;
       border-radius: 8px;
+      display: block;
     }
     .hero-right {
       background: url('images/hero-right.png') center/cover no-repeat;
@@ -257,20 +253,20 @@
 
     function renderRecommended() {
       clearSelection(); document.getElementById('btn-recommended').classList.add('selected');
-      document.getElementById('section-title').textContent = '📘 Recommended Reading';
-      document.getElementById('content-area').innerHTML = `
-        <div class="card skill-layout">
-          <div class="img-container"><img src="images/recommended-reading.png" alt="Recommended Reading"></div>
-          <div class="btn-container">
-            <button>The 7 Habits of Highly Effective People by Stephen R. Covey</button>
-            <button>Leaders Eat Last by Simon Sinek</button>
-            <button>Dare to Lead by Brené Brown</button>
-            <button>Good to Great by Jim Collins</button>
-            <button>The Leadership Challenge by James M. Kouzes & Barry Z. Posner</button>
-            <button>Multipliers: How the Best Leaders Make Everyone Smarter by Liz Wiseman</button>
+        document.getElementById('section-title').textContent = '📘 Recommended Reading';
+        document.getElementById('content-area').innerHTML = `
+          <div class="card skill-layout">
+            <div class="img-container"><img src="images/recommended-reading.png" alt="Recommended Reading"></div>
+            <div class="btn-container">
+              <button>The 7 Habits of Highly Effective People by Stephen R. Covey</button>
+              <button>Leaders Eat Last by Simon Sinek</button>
+              <button>Dare to Lead by Brené Brown</button>
+              <button>Good to Great by Jim Collins</button>
+              <button>The Leadership Challenge by James M. Kouzes & Barry Z. Posner</button>
+              <button>Multipliers: How the Best Leaders Make Everyone Smarter by Liz Wiseman</button>
+            </div>
           </div>
-        </div>
-      `;
+        `;
       document.getElementById('spotify-player').innerHTML = '';
     }
 
