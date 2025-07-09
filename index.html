@@ -1,45 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>People Leader Hub</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
   <style>
-    html, body { margin:0; padding:0; box-sizing:border-box; font-family:'Inter',sans-serif; background:#f4f6f9; }
-    #container { padding-bottom:1rem; }
-    header { background:#fff; padding:1rem 2rem; border-bottom:1px solid #e0e0e0; }
-    header h1 { margin:0; font-weight:600; font-size:1.25rem; }
-    .hero { display:flex; height:500px; }
-    .hero-left, .hero-right { flex:1; position:relative; }
-    .hero-left { display:flex; justify-content:center; align-items:center; background:#4f46e5; }
-    .video-wrapper { width:80%; max-width:800px; padding:1rem; background:#4f46e5; border-radius:12px; box-shadow:0 4px 8px rgba(0,0,0,0.1); }
-    .video-wrapper iframe { width:100%; aspect-ratio:16/9; border:none; border-radius:8px; }
-    .hero-right { background:url('images/hero-right.png') center/cover no-repeat; }
-    .hero-text { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); background:rgba(0,0,0,0.6); color:#fff; padding:1rem; border-radius:8px; text-align:center; width:80%; }
-    .hero-text h2 { margin:0 0 .5rem; font-size:2rem; font-weight:800; }
-    .hero-text p { margin:0; font-size:1rem; }
-    .nav-buttons { display:flex; justify-content:center; gap:1rem; margin:2rem 0; }
-    .nav-buttons button { background:#6366f1; color:#fff; padding:.5rem 1rem; border:none; border-radius:999px; font-weight:500; cursor:pointer; transition:.2s; }
-    .nav-buttons button.selected { background:#fff; color:#6366f1; border:2px solid #6366f1; font-weight:600; }
-    section { padding:1rem 2rem; }
-    #content-area { display:flex; gap:1rem; flex-wrap:wrap; }
-    .card { background:#fff; border-radius:8px; box-shadow:0 2px 4px rgba(0,0,0,0.05); overflow:hidden; position:relative; display:flex; justify-content:center; align-items:center; }
-    .calendar-embed { width:100%; height:600px; border:none; }
-    .thumb { width:200px; height:auto; border-radius:4px; cursor:pointer; box-shadow:0 4px 12px rgba(0,0,0,0.15); transition:transform .2s,box-shadow .2s; }
-    .thumb:hover { transform:scale(1.05); box-shadow:0 6px 16px rgba(0,0,0,0.2); }
-    .skill-layout { display:flex; max-width:1000px; width:100%; }
-    .skill-layout .img-container { flex:1; }
-    .skill-layout .img-container img { width:100%; height:auto; }
-    .skill-layout .btn-container { flex:1; display:grid; grid-template-columns:repeat(2,1fr); gap:.75rem; padding:1rem; overflow-y:auto; }
-    .skill-layout .btn-container a { background:#6366f1; color:#fff; text-decoration:none; border-radius:4px; padding:.75rem 1rem; font-size:.875rem; display:block; }
-    .lightbox { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); display:none; align-items:center; justify-content:center; z-index:1000; }
-    .lightbox.visible { display:flex; }
-    .lightbox-content { position:relative; max-width:90%; max-height:90%; display:flex; align-items:flex-start; gap:1rem; }
-    .lightbox-content img { width:50%; height:auto; border-radius:4px; }
-    .lightbox-text { color:#fff; font-size:1rem; margin-top:300px; }
-    .lightbox-close { position:absolute; top:-10px; right:-10px; background:#fff; border-radius:50%; width:30px; height:30px; text-align:center; line-height:30px; font-size:1.5rem; color:#333; cursor:pointer; }
-    footer { padding:1rem 2rem; font-size:.875rem; color:#6b7280; }
+    html, body { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; background: #f4f6f9; }
+    #container { padding-bottom: 1rem; }
+    header { background: #fff; padding: 1rem 2rem; border-bottom: 1px solid #e0e0e0; }
+    header h1 { margin: 0; font-weight: 600; font-size: 1.25rem; }
+
+    .hero { display: flex; height: 500px; }
+    .hero-left, .hero-right { flex: 1; position: relative; }
+    .hero-left { display: flex; justify-content: center; align-items: center; background: #4f46e5; }
+    .video-wrapper { width: 80%; max-width: 800px; padding: 1rem; background: #4f46e5; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+    .video-wrapper iframe { width: 100%; aspect-ratio: 16/9; border: none; border-radius: 8px; }
+    .hero-right { background: url('images/hero-right.png') center/cover no-repeat; }
+    .hero-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(0,0,0,0.6); color: #fff; padding: 1rem; border-radius: 8px; text-align: center; width: 80%; }
+    .hero-text h2 { margin: 0 0 0.5rem; font-size: 2rem; font-weight: 800; }
+    .hero-text p { margin: 0; font-size: 1rem; }
+
+    .nav-buttons { display: flex; justify-content: center; gap: 1rem; margin: 2rem 0; }
+    .nav-buttons button { background: #6366f1; color: #fff; padding: .5rem 1rem; border: none; border-radius: 999px; font-weight: 500; cursor: pointer; transition: background 0.2s, color 0.2s; }
+    .nav-buttons button.selected { background: #fff; color: #6366f1; border: 2px solid #6366f1; font-weight: 600; }
+
+    section { padding: 1rem 2rem; }
+    #content-area { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .card { background: #fff; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); overflow: hidden; position: relative; display: flex; justify-content: center; align-items: center; padding: 1rem; }
+    .calendar-embed { width: 100%; height: 600px; border: none; }
+
+    .thumb { width: 200px; height: auto; border-radius: 4px; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.15); transition: transform 0.2s, box-shadow 0.2s; }
+    .thumb:hover { transform: scale(1.05); box-shadow: 0 6px 16px rgba(0,0,0,0.2); }
+
+    .skill-layout { display: flex; max-width: 1000px; width: 100%; }
+    .skill-layout .img-container { flex: 1; }
+    .skill-layout .img-container img { width: 100%; height: auto; }
+    .skill-layout .btn-container { flex: 1; display: grid; grid-template-columns: repeat(2,1fr); gap: .75rem; padding: 1rem; overflow-y: auto; }
+    .skill-layout .btn-container a { background: #6366f1; color: #fff; text-decoration: none; border-radius: 4px; padding: .75rem 1rem; font-size: .875rem; display: block; }
+
+    /* Lightbox */
+    .lightbox { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: none; align-items: center; justify-content: center; z-index: 1000; }
+    .lightbox.visible { display: flex; }
+    .lightbox-content { position: relative; max-width: 90%; max-height: 90%; display: flex; align-items: flex-start; gap: 1rem; }
+    .lightbox-content img { width: 50%; height: auto; border-radius: 4px; }
+    .lightbox-text { color: #fff; font-size: 1rem; margin-top: 300px; }
+    .lightbox-close { position: absolute; top: -10px; right: -10px; background: #fff; border-radius: 50%; width: 30px; height: 30px; text-align: center; line-height: 30px; font-size: 1.5rem; color: #333; cursor: pointer; }
+
+    footer { padding: 1rem 2rem; font-size: .875rem; color: #6b7280; }
   </style>
 </head>
 <body>
@@ -48,7 +56,7 @@
     <div class="hero">
       <div class="hero-left">
         <div class="video-wrapper">
-          <iframe src="https://player.vimeo.com/video/1090980266?h=d37eeabc8a&title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479" allowfullscreen></iframe>
+          <iframe src="https://player.vimeo.com/video/1090980266?h=d37eeabc8a&title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" allowfullscreen></iframe>
         </div>
       </div>
       <div class="hero-right">
@@ -58,76 +66,142 @@
         </div>
       </div>
     </div>
+
     <div class="nav-buttons">
       <button id="btn-manager-toolkit">Leader Toolkit</button>
       <button id="btn-skill-paths">Curated Skill Paths</button>
       <button id="btn-podcasts">Leadership Podcasts</button>
       <button id="btn-recommended">Recommended Reading</button>
     </div>
+
     <section>
-      <h3 id="section-title">🧰 Leader Toolkit</h3>
+      <h3 id="section-title"></h3>
       <div id="content-area"></div>
       <div id="spotify-player"></div>
     </section>
+
     <section>
       <h3>📅 Upcoming Events</h3>
       <iframe class="calendar-embed" src="https://calendar.google.com/calendar/embed?src=YOUR_CALENDAR_ID%40group.calendar.google.com&ctz=America%2FNew_York" scrolling="no"></iframe>
     </section>
+
     <footer>Affirm Legal +</footer>
   </div>
 
   <div id="lightbox" class="lightbox">
     <div class="lightbox-content">
       <span id="lb-close" class="lightbox-close">×</span>
-      <img id="lb-img" src="" alt="">
+      <img id="lb-img" src="" alt="lightbox image" />
       <div id="lightbox-text" class="lightbox-text"></div>
     </div>
   </div>
 
   <script>
-    const tabs = document.querySelectorAll('.nav-buttons button');
-    const lightbox = document.getElementById('lightbox');
-    const lbImg = document.getElementById('lb-img');
-    const lbText = document.getElementById('lightbox-text');
-    const lbClose = document.getElementById('lb-close');
+    document.addEventListener('DOMContentLoaded', () => {
+      const tabs = document.querySelectorAll('.nav-buttons button');
+      const lightbox = document.getElementById('lightbox');
+      const lbImg = document.getElementById('lb-img');
+      const lbText = document.getElementById('lightbox-text');
+      const lbClose = document.getElementById('lb-close');
 
-    function clearSelection() {
-      tabs.forEach(t => t.classList.remove('selected'));
-    }
+      function clearSelection() {
+        tabs.forEach(btn => btn.classList.remove('selected'));
+      }
 
-    function renderManager() {
-      clearSelection(); document.getElementById('btn-manager-toolkit').classList.add('selected');
-      document.getElementById('section-title').textContent = '🧰 Leader Toolkit';
-      document.getElementById('content-area').innerHTML = `
-        <div class="card"><img class="thumb" src="images/OneOnOnesSmall.png" data-full="images/OneOnOnes.png" data-text="This is a static screenshot of an interactive tool that will be included. This tool will provide leader meeting agenda templates along with short explanations for how to run these meetings."></div>
-        <div class="card"><img class="thumb" src="images/MeetingNecessityEvaluatorSmall.png" data-full="images/MeetingNecessityEvaluator.png" data-text="This is a static screenshot of an interactive tool that will be included. This tool will help leaders think through the necessity of holding a meeting by asking questions about the intended meeting. As a result of the answers, the tool will make suggestions about whether a meeting is recommended and provide data about the cost of the meeting."></div>
-      `;
-      bindThumbnails(); document.getElementById('spotify-player').innerHTML = '';
-    }
+      function bindThumbnails() {
+        document.querySelectorAll('img.thumb').forEach(img => {
+          img.addEventListener('click', () => {
+            lbImg.src = img.dataset.full;
+            lbText.textContent = img.dataset.text;
+            lightbox.classList.add('visible');
+          });
+        });
+        lbClose.addEventListener('click', () => lightbox.classList.remove('visible'));
+        lightbox.addEventListener('click', () => lightbox.classList.remove('visible'));
+      }
 
-    function renderSkillPaths() {
-      clearSelection(); document.getElementById('btn-skill-paths').classList.add('selected');
-      document.getElementById('section-title').textContent = '🧭 Curated Skill Paths';
-      document.getElementById('content-area').innerHTML = `
-        <div class="card skill-layout">
-          <div class="img-container"><img src="images/skill-paths.png" alt="Skill Paths"></div>
-          <div class="btn-container">
-            <a href="#">Decision Making</a>
-            <a href="#">Strategic Thinking</a>
-            <a href="#">Drives Results</a>
-            <a href="#">Accountability</a>
-            <a href="#">Continuous Learning</a>
-            <a href="#">Effective Communication</a>
-            <a href="#">Actionable Feedback</a>
-            <a href="#">Adaptability</a>
-            <a href="#">Reflection</a>
+      function renderManager() {
+        clearSelection();
+        document.getElementById('btn-manager-toolkit').classList.add('selected');
+        document.getElementById('section-title').textContent = '🧰 Leader Toolkit';
+        document.getElementById('content-area').innerHTML = `
+          <div class="card"><img class="thumb" src="images/OneOnOnesSmall.png" data-full="images/OneOnOnes.png" data-text="This is a static screenshot of an interactive tool that will be included. This tool will provide leader meeting agenda templates along with short explanations for how to run these meetings."></div>
+          <div class="card"><img class="thumb" src="images/MeetingNecessityEvaluatorSmall.png" data-full="images/MeetingNecessityEvaluator.png" data-text="This is a static screenshot of an interactive tool that will be included. This tool will help leaders think through the necessity of holding a meeting by asking questions about the intended meeting. As a result of the answers, the tool will make suggestions about whether a meeting is recommended and provide data about the cost of the meeting."></div>
+        `;
+        bindThumbnails();
+        document.getElementById('spotify-player').innerHTML = '';
+      }
+
+      function renderSkillPaths() {
+        clearSelection();
+        document.getElementById('btn-skill-paths').classList.add('selected');
+        document.getElementById('section-title').textContent = '🧭 Curated Skill Paths';
+        document.getElementById('content-area').innerHTML = `
+          <div class="card skill-layout">
+            <div class="img-container"><img src="images/skill-paths.png" alt="Skill Paths"></div>
+            <div class="btn-container">
+              <a href="#">Decision Making</a>
+              <a href="#">Strategic Thinking</a>
+              <a href="#">Drives Results</a>
+              <a href="#">Accountability</a>
+              <a href="#">Continuous Learning</a>
+              <a href="#">Effective Communication</a>
+              <a href="#">Actionable Feedback</a>
+              <a href="#">Adaptability</a>
+              <a href="#">Reflection</a>
+            </div>
           </div>
-        </div>
-      `;
-    }
+        `;
+      }
 
-    function renderPodcasts() {
-      clearSelection(); document.getElementById('btn-podcasts').classList.add('selected');
-      document.getElementById('section-title').textContent = '🎧 Leadership Podcasts';
-      document.getElementById('content-area').innerHTML = `
-        <div class="card"><img src="images/podcast1.png" data-spotify="https://open.spotify.com/embed/episode/0QoIMrrMWDKcG3aPe
+      function renderPodcasts() {
+        clearSelection();
+        document.getElementById('btn-podcasts').classList.add('selected');
+        document.getElementById('section-title').textContent = '🎧 Leadership Podcasts';
+        document.getElementById('content-area').innerHTML = `
+          <div class="card"><img src="images/podcast1.png" data-spotify="https://open.spotify.com/embed/episode/0QoIMrrMWDKcG3aPe1J3CD?utm_source=generator"></div>
+          <div class="card"><img src="images/podcast2.png" data-spotify="https://open.spotify.com/embed/episode/YOUR_EPISODE_ID2?utm_source=generator"></div>
+        `;
+        document.getElementById('spotify-player').innerHTML = '';
+        document.querySelectorAll('#content-area img[data-spotify]').forEach(img => {
+          img.addEventListener('click', () => {
+            document.getElementById('spotify-player').innerHTML =
+              `<iframe src="${img.dataset.spotify}" width="100%" height="232" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+          });
+        });
+      }
+
+      function renderRecommended() {
+        clearSelection();
+        document.getElementById('btn-recommended').classList.add('selected');
+        document.getElementById('section-title').textContent = '📘 Recommended Reading';
+        document.getElementById('content-area').innerHTML = `
+          <div class="card skill-layout">
+            <div class="img-container"><img src="images/recommended-reading.png" alt="Recommended Reading"></div>
+            <div class="btn-container">
+              <a href="#">The 7 Habits of Highly Effective People by Stephen R. Covey</a>
+              <a href="#">Leaders Eat Last by Simon Sinek</a>
+              <a href="#">Dare to Lead by Brené Brown</a>
+              <a href="#">Good to Great by Jim Collins</a>
+              <a href="#">The Leadership Challenge by James M. Kouzes & Barry Z. Posner</a>
+              <a href="#">Multipliers: How the Best Leaders Make Everyone Smarter by Liz Wiseman</a>
+            </div>
+          </div>
+        `;
+      }
+
+      // Bind nav
+      tabs.forEach(btn => btn.addEventListener('click', () => {
+        const id = btn.id;
+        if (id === 'btn-manager-toolkit') renderManager();
+        else if (id === 'btn-skill-paths') renderSkillPaths();
+        else if (id === 'btn-podcasts') renderPodcasts();
+        else if (id === 'btn-recommended') renderRecommended();
+      }));
+
+      // Init
+      renderManager();
+    });
+  </script>
+</body>
+</html>
