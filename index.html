@@ -36,7 +36,7 @@
     .lightbox.visible { display:flex; }
     .lightbox-content { position:relative; max-width:90%; max-height:90%; display:flex; align-items:flex-start; gap:1rem; }
     .lightbox-content img { width:50%; height:auto; border-radius:4px; }
-    .lightbox-text { color:#fff; font-size:1rem; }
+    .lightbox-text { color:#fff; font-size:1rem; margin-top:300px; }
     .lightbox-close { position:absolute; top:-10px; right:-10px; background:#fff; border-radius:50%; width:30px; height:30px; text-align:center; line-height:30px; font-size:1.5rem; color:#333; cursor:pointer; }
     footer { padding:1rem 2rem; font-size:.875rem; color:#6b7280; }
   </style>
@@ -45,8 +45,17 @@
   <div id="container">
     <header><h1>People Leader Hub</h1></header>
     <div class="hero">
-      <div class="hero-left"><div class="video-wrapper"><iframe src="https://player.vimeo.com/video/1090980266?h=d37eeabc8a&title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479" allowfullscreen></iframe></div></div>
-      <div class="hero-right"><div class="hero-text"><h2>Welcome to the People Leader Hub</h2><p>Your one-stop location for leaders @Affirm</p></div></div>
+      <div class="hero-left">
+        <div class="video-wrapper">
+          <iframe src="https://player.vimeo.com/video/1090980266?h=d37eeabc8a&title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479" allowfullscreen></iframe>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="hero-text">
+          <h2>Welcome to the People Leader Hub</h2>
+          <p>Your one-stop location for leaders @Affirm</p>
+        </div>
+      </div>
     </div>
     <div class="nav-buttons">
       <button id="btn-manager-toolkit" type="button">Leader Toolkit</button>
@@ -167,14 +176,3 @@
           'btn-manager-toolkit': renderManager,
           'btn-skill-paths': renderSkillPaths,
           'btn-podcasts': renderPodcasts,
-          'btn-recommended': renderRecommended
-        };
-        fnMap[tab.id]();
-      });
-    });
-
-    // Initialize default
-    renderManager();
-  </script>
-</body>
-</html>
