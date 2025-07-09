@@ -72,6 +72,7 @@
       <button id="btn-skill-paths">Curated Skill Paths</button>
       <button id="btn-podcasts">Leadership Podcasts</button>
       <button id="btn-recommended">Recommended Reading</button>
+      <button id="btn-resources">Resources</button>
     </div>
 
     <section>
@@ -190,6 +191,16 @@
         `;
       }
 
+      function renderResources() {
+        clearSelection();
+        document.getElementById('btn-resources').classList.add('selected');
+        document.getElementById('section-title').textContent = '📋 Resources';
+        document.getElementById('content-area').innerHTML = `
+          <div class="card">Resources placeholder</div></div>
+        `;
+        document.getElementById('spotify-player').innerHTML = '';
+      }
+
       // Bind nav
       tabs.forEach(btn => btn.addEventListener('click', () => {
         const id = btn.id;
@@ -197,9 +208,10 @@
         else if (id === 'btn-skill-paths') renderSkillPaths();
         else if (id === 'btn-podcasts') renderPodcasts();
         else if (id === 'btn-recommended') renderRecommended();
+        else if (id === 'btn-resources') renderResources();
       }));
 
-      // Init
+      // Initialize default
       renderManager();
     });
   </script>
