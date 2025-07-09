@@ -26,14 +26,8 @@
     #content-area { display:flex; gap:1rem; flex-wrap:wrap; }
     .card { background:#fff; border-radius:8px; box-shadow:0 2px 4px rgba(0,0,0,0.05); overflow:hidden; position:relative; display:flex; justify-content:center; align-items:center; }
     .calendar-embed { width:100%; height:600px; border:none; }
-    .thumb {
-      width:200px;
-      height:auto;
-      border-radius:4px;
-      cursor:pointer;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
+    .thumb { width:200px; height:auto; border-radius:4px; cursor:pointer; box-shadow:0 4px 12px rgba(0,0,0,0.15); transition:transform .2s,box-shadow .2s; }
+    .thumb:hover { transform:scale(1.05); box-shadow:0 6px 16px rgba(0,0,0,0.2); }
     .skill-layout { display:flex; max-width:1000px; width:100%; }
     .skill-layout .img-container { flex:1; }
     .skill-layout .img-container img { width:100%; height:auto; }
@@ -65,10 +59,10 @@
       </div>
     </div>
     <div class="nav-buttons">
-      <button id="btn-manager-toolkit" type="button">Leader Toolkit</button>
-      <button id="btn-skill-paths" type="button">Curated Skill Paths</button>
-      <button id="btn-podcasts" type="button">Leadership Podcasts</button>
-      <button id="btn-recommended" type="button">Recommended Reading</button>
+      <button id="btn-manager-toolkit">Leader Toolkit</button>
+      <button id="btn-skill-paths">Curated Skill Paths</button>
+      <button id="btn-podcasts">Leadership Podcasts</button>
+      <button id="btn-recommended">Recommended Reading</button>
     </div>
     <section>
       <h3 id="section-title">🧰 Leader Toolkit</h3>
@@ -77,7 +71,7 @@
     </section>
     <section>
       <h3>📅 Upcoming Events</h3>
-      <iframe class="calendar-embed" src="https://calendar.google.com/calendar/embed?src=YOUR_CALENDAR_ID%40group.calendar.google.com&ctz=America%2FNew_York"></iframe>
+      <iframe class="calendar-embed" src="https://calendar.google.com/calendar/embed?src=YOUR_CALENDAR_ID%40group.calendar.google.com&ctz=America%2FNew_York" scrolling="no"></iframe>
     </section>
     <footer>Affirm Legal +</footer>
   </div>
@@ -97,7 +91,9 @@
     const lbText = document.getElementById('lightbox-text');
     const lbClose = document.getElementById('lb-close');
 
-    function clearSelection() { tabs.forEach(t => t.classList.remove('selected')); }
+    function clearSelection() {
+      tabs.forEach(t => t.classList.remove('selected'));
+    }
 
     function renderManager() {
       clearSelection(); document.getElementById('btn-manager-toolkit').classList.add('selected');
@@ -134,52 +130,4 @@
       clearSelection(); document.getElementById('btn-podcasts').classList.add('selected');
       document.getElementById('section-title').textContent = '🎧 Leadership Podcasts';
       document.getElementById('content-area').innerHTML = `
-        <div class="card"><img src="images/podcast1.png" data-spotify="https://open.spotify.com/embed/episode/0QoIMrrMWDKcG3aPe1J3CD?utm_source=generator"></div>
-        <div class="card"><img src="images/podcast2.png" data-spotify="https://open.spotify.com/embed/episode/YOUR_EPISODE_ID2?utm_source=generator"></div>
-      `;
-      document.getElementById('spotify-player').innerHTML = '';
-      document.querySelectorAll('#content-area img[data-spotify]').forEach(img => {
-        img.addEventListener('click', () => {
-          document.getElementById('spotify-player').innerHTML = 
-            `<iframe src="${img.dataset.spotify}" width="100%" height="232" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
-        });
-      });
-    }
-
-    function renderRecommended() {
-      clearSelection(); document.getElementById('btn-recommended').classList.add('selected');
-      document.getElementById('section-title').textContent = '📘 Recommended Reading';
-      document.getElementById('content-area').innerHTML = `
-        <div class="card skill-layout">
-          <div class="img-container"><img src="images/recommended-reading.png" alt="Recommended Reading"></div>
-          <div class="btn-container">
-            <a href="#">The 7 Habits of Highly Effective People by Stephen R. Covey</a>
-            <a href="#">Leaders Eat Last by Simon Sinek</a>
-            <a href="#">Dare to Lead by Brené Brown</a>
-            <a href="#">Good to Great by Jim Collins</a>
-            <a href="#">The Leadership Challenge by James M. Kouzes & Barry Z. Posner</a>
-            <a href="#">Multipliers: How the Best Leaders Make Everyone Smarter by Liz Wiseman</a>
-          </div>
-        </div>
-      `;
-    }
-
-    function bindThumbnails() {
-      document.querySelectorAll('img.thumb').forEach(img => {
-        img.addEventListener('click', () => {
-          lbImg.src = img.dataset.full;
-          lbText.textContent = img.dataset.text;
-          lightbox.classList.add('visible');
-        });
-      });
-      lbClose.addEventListener('click', () => lightbox.classList.remove('visible'));
-      lightbox.addEventListener('click', () => lightbox.classList.remove('visible'));
-    }
-
-    // Bind navigation buttons
-    tabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        const fnMap = {
-          'btn-manager-toolkit': renderManager,
-          'btn-skill-paths': renderSkillPaths,
-          'btn-podcasts': renderPodcasts,
+        <div class="card"><img src="images/podcast1.png" data-spotify="https://open.spotify.com/embed/episode/0QoIMrrMWDKcG3aPe
